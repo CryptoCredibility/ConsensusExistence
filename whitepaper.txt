@@ -1,0 +1,68 @@
+
+	Trust tokens
+	
+	Nodes cannot be funded, tokens cannot be traded? 
+		Stable price? 
+		If a token represents trust in this economy, can trust be paid for? 
+			If it can't be paid for then what is the incentive of gaining more trust in this system? 
+				Making sure you can login and access sensitive areas of other dapps with ease properly in the blockchain world 
+				There is inherent value in being easily recognized and simultaneously have your private stuff anonymous. 
+
+
+	A crypto incentive scheme to bet on the validity of each other's identity
+
+
+	Your rating of validity is in large part created by whether or not other nodes think you are a good bet. 
+
+	Lost Account
+		If account get stolen, notify friends to bet against your previous identity, slowly eliminating it from the market? 
+	Trustworthy nodes	
+	Large well known companies will likely receive a large majority of the shares since, most people can verify their information easily, allowing easy payments.
+
+	Nodes that receive a majority of nodes betting against them, have a slow combustion that will eventually eliminate the node from the network.
+
+	relationship-oriented approach combined with strong passwords is the strongest approach to verification
+
+	Beginners
+		Should get verified by a large node (company) as quickly as possible 
+		Verify with twitter, facebook, social network of any sort 
+
+	Data vs Identity 
+		Node represents your identity, and your data can be disputed by another entity 
+		Data disputes ddo not necesarily mean the identities are incorrect as a person could use his real identity but take the email of another person
+
+	DDOS / Game Theory Risks
+		User creating many nodes that reinforce eachother's identity
+			Could they build a large node? 
+				This would be damaging as they could over-rule smaller nodes
+		Mitigation
+			There will also naturally be a large reward for busting fraud trust rings like this. 
+				Vote against their data markets with majority and receive payout until nodes are bankrupt and disappear
+
+			
+
+	Trust vs Verification 
+		Trust: Does that data actually belong to that identity? 
+			Trust is an accumulation of all the money that goes into each individual identity blob. ie. email, pgp-keys, facebook, driverslicence etc.. 
+				Amount of money invested positively towards your data market, indicates level of trust 
+				Amount of money invested negatively towards your data market (don't agree it's yours), indicates level of distrust 
+				These two create the amount which each node will receive during "mining"
+					Received amount will be paid to market majority
+			Should there be a market for each piece of data?
+				ie. Email dispute could be solved by  "dispute resolution markets", where a node could email the address in question and ask for a secret answer through the platform. 
+					This requires some form of messaging
+					Funding the dispute markets 
+						Initiator pays escrow to start the market
+							If market is lost, the escrow money goes to the "victim" of the dispute 
+								Does this incentivize snatching other peoples data? 
+									Every piece of data needs to have a secure way of verifying in a decentralized way (or consulting large nodes)
+							Initiator can fund the market bonus, and if they are successful they get this money returned to them, otherwise money goes to person originally holding piece of data
+
+					Can we automate obvious disputes? 
+			Lost data 
+				If data is succesfully disputed, how does this effect the trust of the node? 
+
+
+		Verification: Is this the true identity of this person
+			This is private information. A company like Civic can handle this until zero knowledge proofs are ready
+			Really until zero knowledge proofs you can't really verify high level 
