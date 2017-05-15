@@ -8,6 +8,18 @@ import { default as contract } from 'truffle-contract'
 // Import our contract artifacts and turn them into usable abstractions.
 import verifyArtifacts from '../../build/contracts/Verify.json'
 
+
+// Add Angular Scope
+angular.module('verify', [])
+
+.controller('body', [
+'$scope',
+function($scope){
+
+  $scope.firstName = 'stranger';
+  $scope.lastName = 'anon'; 
+
+
 // Verify  is our usable abstraction, which we'll use through the code below.
 var Verify = contract(verifyArtifacts);
 
@@ -40,6 +52,8 @@ window.App = {
       account = accounts[0];
 
       self.refreshBalance();
+      var nameGreeting = document.getElementById("nameGreeting"); 
+      nameGreeting.innerHTML = $scope.firstName; // TODO search contract for returning user
     });
   },
 
@@ -68,6 +82,23 @@ window.App = {
     //   self.setStatus("Error getting balance; see log.");
     // });
   },
+  signUp: function() { 
+    var self = this;
+    var verify; 
+    var firstName = document.getElementById("firstName"); 
+    var lastName = document.getElementById("lastName"); 
+    if (firstName.valueOf() == '') { window.alert("Must enter first name!"); }
+    if (lastName.valueOf() == '') { window.alert("Must enter last name!");  }
+    Verify.deployed().then(function(instance) {        // Receive contract abstraction instance
+      verify = instance;
+      return verify.signUp.call({ from: account, gas:200000 });
+    }).then(function(signUpSuccess) { 
+      if (signUpSuccess.valueOf() == 0) { window.alert("You are already registered!"); }
+      if (signUpSuccess.valueOf() != 1) { window.alert("Sign up failed. Failed to create user struct"); }
+      return verify.signUp( {from:account, gas:200000 });
+    }).then(function(txHash) { 
+
+    })
 
 };
 
