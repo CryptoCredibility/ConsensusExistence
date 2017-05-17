@@ -8,16 +8,16 @@ import { default as contract } from 'truffle-contract'
 // Import our contract artifacts and turn them into usable abstractions.
 import verifyArtifacts from '../../build/contracts/Verify.json'
 
+// var ethKeys = require("ethereumjs-keys");
+
 
 // Add Angular Scope
 angular.module('verify', [])
 
-.controller('body', [
-'$scope',
-function($scope){
+.controller('userControl', function(){
 
-  $scope.firstName = 'stranger';
-  $scope.lastName = 'anon'; 
+  this.firstName = 'stranger';
+  this.lastName = 'anon'; 
 
 
 // Verify  is our usable abstraction, which we'll use through the code below.
@@ -52,8 +52,8 @@ window.App = {
       account = accounts[0];
 
       self.refreshBalance();
-      var nameGreeting = document.getElementById("nameGreeting"); 
-      nameGreeting.innerHTML = $scope.firstName; // TODO search contract for returning user
+      // var nameGreeting = document.getElementById("nameGreeting"); 
+      // nameGreeting.innerHTML = $scope.firstName; // TODO search contract for returning user
     });
   },
 
@@ -64,42 +64,47 @@ window.App = {
 
   refreshBalance: function() {
     var self = this;
-    var balanceWei = web3.eth.getBalance(account).valueOf();
-    var balanceEth = balancewei / 10^18; 
+    var balanceEth = web3.fromWei(web3.eth.getBalance(account).valueOf()); 
+    // var balanceEth = balanceWei / 10^18; 
     var balanceElement = document.getElementById("balance");
     balanceElement.innerHTML = balanceEth; 
     console.log(balanceEth); 
-
-    // var meta;
-    // MetaCoin.deployed().then(function(instance) {
-    //   meta = instance;
-    //   return meta.getBalance.call(account, {from: account});
-    // }).then(function(value) {
-    //   var balance_element = document.getElementById("balance");
-    //   balance_element.innerHTML = value.valueOf();
-    // }).catch(function(e) {
-    //   console.log(e);
-    //   self.setStatus("Error getting balance; see log.");
-    // });
+  },
+  refreshUser: function() { 
+    var self = this; 
+    var verify; 
+    Verify.deployed().then(function(instance) {
+      verify = instance; 
+      return verify.getUserName.call({from: account, gas:200000}); 
+    })
+    .then(function(firstAndLastName) { 
+      console.log(firstAndLastName); 
+      // this.firstName = firstAndLastName[0]; 
+    })
   },
   signUp: function() { 
     var self = this;
     var verify; 
-    var firstName = document.getElementById("firstName"); 
-    var lastName = document.getElementById("lastName"); 
+    var firstName = document.getElementById("firstName").value; 
+    var lastName = document.getElementById("lastName").value; 
     if (firstName.valueOf() == '') { window.alert("Must enter first name!"); }
     if (lastName.valueOf() == '') { window.alert("Must enter last name!");  }
+    console.log("First name: " + firstName + " Last Name: " + lastName); 
     Verify.deployed().then(function(instance) {        // Receive contract abstraction instance
       verify = instance;
-      return verify.signUp.call({ from: account, gas:200000 });
-    }).then(function(signUpSuccess) { 
+      console.log(verify); 
+      return verify.signUp.call(firstName, lastName, { from: account, gas:2000000 });
+    })
+    .then(function(signUpSuccess) { 
+      console.log(signUpSuccess.valueOf()); 
       if (signUpSuccess.valueOf() == 0) { window.alert("You are already registered!"); }
       if (signUpSuccess.valueOf() != 1) { window.alert("Sign up failed. Failed to create user struct"); }
-      return verify.signUp( {from:account, gas:200000 });
-    }).then(function(txHash) { 
-
+      return verify.signUp(firstName, lastName, {from:account, gas:200000 });
     })
-
+    .then(function(txHash) { 
+       self.refreshUser(); 
+    })
+},
 };
 
 window.addEventListener('load', function() {
@@ -116,3 +121,4 @@ window.addEventListener('load', function() {
 
   App.start();
 });
+}); 

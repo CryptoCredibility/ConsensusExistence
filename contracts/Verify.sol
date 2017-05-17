@@ -3,11 +3,11 @@ pragma solidity ^0.4.8;
 contract Verify {
 
 	// Contract info
-	address owner; 
+	address public owner; 
 
 	// User's data blob      maybe store as JSON on IPFS?? 
 	struct User {
-		address userAddress; 
+		address  userAddress; 
 		string firstName;
 		string lastName;
 		string emailAddress; 
@@ -23,7 +23,7 @@ contract Verify {
 	// User info 
 	uint256 public numUsers; 
 	User[] public users;
-	User user; 
+	User public user;    // empty user object (for inititation)
 	mapping (address => uint256) public userID;   // The userID of this address 
 	mapping (address => bool) public registered;   // Quick check to see if already registered
 
@@ -50,16 +50,24 @@ contract Verify {
 		owner = msg.sender;      // creator is owner of contract
 	}
 
+	// returns first name, last name and email address
+	function getUserName() constant returns (string, string)  { 
+		User thisUser = users[userID[msg.sender]]; 
+		return (thisUser.firstName, thisUser.lastName);
+	}
+	// function getFriends() constant userOnly{ 
+	// 	User thisUser =  users[userID[msg.sender]];
+	// }
 	// Create User with first name and last name 
 	function signUp(string _firstName, string _lastName) returns (uint256) { 
-		if (registered[msg.sender]) { return 0; }
+		// if (registered[msg.sender]) { return 0; }
 		registered[msg.sender] = true; 
 		userID[msg.sender] = numUsers;
 		User newUser = user;  // initialize as empty User
 		newUser.firstName = _firstName; 
 		newUser.lastName = _lastName; 
-		users[numUsers] = newUser;   // add new user to user list 
-		numUsers++; 
+		users.push(newUser);   // add new user to user list 
+		// numUsers++; 
 		newUserEvent(msg.sender, block.timestamp); 
 		return 1; 
 	}
