@@ -67,7 +67,7 @@ contract Verify {
 		newUser.firstName = _firstName; 
 		newUser.lastName = _lastName; 
 		users.push(newUser);   // add new user to user list 
-		// numUsers++; 
+		numUsers++; 
 		newUserEvent(msg.sender, block.timestamp); 
 		return 1; 
 	}
