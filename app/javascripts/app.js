@@ -9,7 +9,13 @@ import { default as contract } from 'truffle-contract'
 import verifyArtifacts from '../../build/contracts/Verify.json'
 
 // var ethKeys = require("ethereumjs-keys");
+var openpgp = require('openpgp');
 
+openpgp.initWorker({ path:'openpgp.worker.js' }) // set the relative web worker path
+
+openpgp.config.aead_protect = true // activate fast AES-GCM mode (not yet OpenPGP standard)
+
+// https://github.com/openpgpjs/openpgpjs/blob/master/README.md#getting-started
 
 // Add Angular Scope
 angular.module('verify', [])
