@@ -38,31 +38,25 @@ The main problem with running an incentivized and decentralized service is the g
 It will be vital for a new node on the network to sign up with a very credible node to avoid being gambled against by the network. The smart contracts could be coded, to allow for a multi-sig node that can do direct verification, such as encrypting drivers license numbers, proof of address or any of the typical centralized verification approaches. With token-incentivization, decentralization is an efficient way of delegating power and offers higher security, however, it is a difficult approach when the network is small. Crowdsourced economies work better when the crowd is large (ie. Wikipedia, Stack Exchange). For this reason it may be smart to have a pre-programmed centralized aspect that fades over time, as a way to transition into a fully decentralized identity platform. 
 
 ## Costs 
-	The preliminary prototype will require the following functionality. A rough estimate is $3000, although the prototype could be stripped of messaging which would cut the cost. 
+	The preliminary prototype will require the following functionality. A rough estimate is $3000-$5000
 		Front-End/Ethereum node
 			On browser encryption
 			Ethereum node private/public key signing
 		Smart Contract
 			Credibility market (An escrow-like contract that resolves the ledger for current user bets)
-			User profile functionality
-			PGP verification
-			Basic messaging functionality
-			Store encrypted data (very expensive...will need to store this on IPFS/SWARM when off test network)
+			User profile and user interaction
+			IPFS integration
 
 		
-	The full proof of concept is only a concept at this point, and to make it a proof of this whitepaper we would need the following additions on top of the above prototype. Everything below is assumed to have extensive testing and should have some percentage of the total cost spent solely on testing. I recommend an abnormally high percentage of this projects budget be put to testing and bug bounties. This concept involves very complex game theory problems, and the novelty of autonomously incentivized organizations, requires a high investment in future security, due to the difficulty of updating smart contracts. 
+	This project is highly experimental and would require a lot of game theory research to make it feasible. As a general roadmap the following additions on top of the above prototype would be required. Everything below is assumed to have extensive testing and should have a large percentage of the total cost spent solely on testing, due to the complex game theory problems that arise with consensus mechanisms. 
 		Encryption 
-			Zero Knowledge Proof Research + possible implementation
+			Zero Knowledge Proof implementation
 		Smart Contract 
-			credibility markets, credibility tokens,  
+			credibility markets, credibility tokens
 		Whisper 
 			Messaging between Ethereum Nodes 
-		PGP 
-			A good system of verifying and sending messages using PGP
-		IPFS/Swarm 
-			Need to store expensive data structures on Swarm/IPFS
-		ENS 
-			Linked to ENS to help identify people
+		Robustness
+			Accept and Receive data from other blockchain ID platforms
 		IBAN/ICAP
 			Have an ICAP reference for each user
 		Ether Gas 
